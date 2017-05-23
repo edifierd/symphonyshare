@@ -1,0 +1,91 @@
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+  <div class="form-group" id="fos_user_registration_form">
+    <div class="row">
+
+      <p class="center login-form-text">Crear cuenta</p>
+
+      <div class="input-field col s12 margin">
+
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
+            <span class="col s12 red-text" >{{ form_errors(form.username) }}</span>
+          </div>
+        </div>
+
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-communication-email prefix"></i>
+            {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans }  }) }}
+            <span class="col s12 red-text" >{{ form_errors(form.email) }}</span>
+          </div>
+        </div>
+
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
+          </div>
+        </div>
+
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
+          </div>
+        </div>
+
+        <span class="col s12 red-text margin" >{{ form_errors(form.plainPassword.first) }}</span>
+        <span class="col s12 red-text margin" >{{ form_errors(form.plainPassword.second) }}</span>
+
+        {{ form_rest(form) }}
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="input-field col s12 margin">
+    <input class="btn col s12 grey darken-1" type="submit" value="Crear Cuenta">
+  </div>
+
+
+</form>
+
+
+<div class="input-field col s12">
+  <a class="waves-effect waves-light btn col s12 social google red darken-3" href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}">
+    <i class="fa fa-google"></i> Google</a>
+</div>
+
+<div class="input-field col s12 m12">
+    <a class="waves-effect waves-light btn col s12 social facebook blue darken-3" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}">
+      <i class="fa fa-facebook"></i> Facebook</a>
+    </div>
+
+<div class="input-field col s12">
+  <p class="margin center medium-small sign-up">Ya tienes una cuenta? <a href="{{ path('fos_user_security_login') }}">Iniciar sesión</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+{# {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
+{{ form_errors(form.username) }}
+
+{{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
+{{ form_errors(form.email) }}
+
+{{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
+{{ form_errors(form.plainPassword.first) }}
+
+{{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
+{{ form_errors(form.plainPassword.second) }}
+
+{{ form_rest(form) }} #}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
+  <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+  <title>Quempanadas! | Una de roque</title>
+
+  <!-- Favicons-->
+  <link rel="icon" href="{{ asset('bundles/app/image/favicon/favicon-32x32.png')}}" sizes="32x32">
+  <!-- Favicons-->
+  <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/app/image/favicon/apple-touch-icon-152x152.png')}}">
+  <!-- For iPhone -->
+  <meta name="msapplication-TileColor" content="#00bcd4">
+  <meta name="msapplication-TileImage" content="image/favicon/mstile-144x144.png">
+
+  <!-- Login Buttons -->
+  <link href="{{ asset('bundles/app/css/font-awesome.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+
+  <!-- CORE CSS-->
+  <link href="{{ asset('bundles/app/css/materializecss-icon.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset('bundles/app/css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset('bundles/app/css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset('bundles/app/css/page-center.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset('bundles/app/css/default.css') }}" rel="stylesheet" type="text/css">
+
+  <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+  <link href="{{ asset('bundles/app/css/prism.css') }}" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="{{ asset('bundles/app/js/plugins/perfect-scrollbar/perfect-scrollbar.css')}}" type="text/css" rel="stylesheet" media="screen,projection">
+
+</head>
+<body class="brown lighten-2">
+  <!-- Start Page Loading -->
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+  </div>
+  <!-- End Page Loading -->
+
+  <!-- Imagen -->
+  <div id="login-page" class="row">
+    <div class="col s12 z-depth-4 card-panel">
+      <div class="login-form">
+
+
+        <div class="input-field col s12 center">
+          <img src="{{ asset('bundles/app/image/quempanadas.png')}}" alt="">
+        </div>
+
+        
+        {% if app.session.flashBag.has('fos_user_success') %}
+          <div class="row" id="alert_box_success">
+            <div class="col s12 m12">
+              <div class="card green darken-1">
+                <div class="row">
+                  <div class="col s12 m10">
+                    <div class="card-content white-text">
+                      <span>
+
+                       <i class="fa fa-check" style="margin-right:5px;" aria-hidden="true"></i>
+                       {% for msg in app.session.flashBag.get('fos_user_success') %}
+                        {{ msg | trans({}, 'FOSUserBundle')  }}
+                      {% endfor %}
+                    </span>
+                  </div>
+                </div>
+                <div class="col s12 m2">
+                  <i class="fa fa-times icon_style" id="alert_close_success" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if app.session.flashBag.has('fos_user_error') %}
+          <div class="row" id="alert_box_error">
+            <div class="col s12 m12">
+              <div class="card red darken-1">
+                <div class="row">
+                  <div class="col s12 m10">
+                    <div class="card-content white-text">
+                      <span>
+
+                       <i class="fa fa-exclamation" style="margin-right:5px;" aria-hidden="true"></i>
+                       {% for msg in app.session.flashBag.get('fos_user_error') %}
+                        {{ msg | trans({}, 'FOSUserBundle')  }}
+                      {% endfor %}
+                    </span>
+                  </div>
+                </div>
+                <div class="col s12 m2">
+                  <i class="fa fa-times icon_style" id="alert_close_error" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+        <!-- End Page Loading -->
+        <div class="row">
+
+          {% block fos_user_content %}
+          {% endblock fos_user_content %}
+
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          <p class="input-field col s12">
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+          </p>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================
+  Scripts
+  ================================================ -->
+  <script type="text/javascript" src="{{ asset('bundles/app/js/jquery-1.11.2.min.js')}}"></script>
+  <!--materialize js-->
+  <script type="text/javascript" src="{{ asset('bundles/app/js/materialize.min.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('bundles/app/js/default.js') }}"></script>
+  <!--scrollbar-->
+  <script type="text/javascript" src="{{ asset('bundles/app/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+  <!--prism-->
+  <script type="text/javascript" src="{{ asset('bundles/app/js/prism.js')}}"></script>
+
+  <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+  <script type="text/javascript" src="{{ asset('bundles/app/js/plugins.js')}}"></script>
+
+</body>
+</html>

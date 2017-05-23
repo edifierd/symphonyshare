@@ -1,0 +1,58 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+
+  <form action="{{ path("fos_user_security_check") }}" method="post">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+    <p class="center login-form-text">Iniciar Sesión</p>
+
+  {% if error %}
+    <div class="col s12 center red-text">{{ error|trans({}, 'FOSUserBundle') }}</div>
+  {% endif %}
+
+<div class="row margin">
+  <div class="input-field col s12">
+    <i class="mdi-social-person-outline prefix"></i>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+    <label for="username" class="left-align">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+  </div>
+</div>
+
+
+<div class="row margin">
+  <div class="input-field col s12">
+    <i class="mdi-action-lock-outline prefix"></i>
+    <input type="password" id="password" name="_password" required="required" />
+    <label for="password" class="left-align">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+  </div>
+</div>
+
+
+<!-- Boton Entrar -->
+<div class="input-field col s12">
+  <input class="btn col s12 grey darken-1" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+</div>
+
+
+<!-- Boton Google -->
+<div class="input-field col s12 m12"> 
+
+  <a class="waves-effect waves-light btn col s12 social google red darken-3" href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}">
+    <i class="fa fa-google"></i> Google</a>
+  </div>
+
+  <div class="input-field col s12 m12">
+    <a class="waves-effect waves-light btn col s12 social facebook blue darken-3" href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}">
+      <i class="fa fa-facebook"></i> Facebook</a>
+    </div>
+
+    <div>
+      <div class="input-field col s6 m6 l6">
+        <p class="margin medium-small"><a class="grey-text" href="{{ path('fos_user_registration_register') }}">Registrate!</a></p>
+      </div>
+    </div>
+
+  </form>
+{% endblock fos_user_content %}
